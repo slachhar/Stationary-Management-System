@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+SMS_Api/bin
+SMS_Api/obj
+SMS_App/bin
+SMS_App/obj
+SMS_Library/bin
+SMS_Library/obj
+StationaryManagementSystem/bin
+StationaryManagementSystem/obj
+StationaryManagementSystem/.vs
