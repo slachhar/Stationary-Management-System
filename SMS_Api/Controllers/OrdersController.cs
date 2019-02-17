@@ -23,8 +23,9 @@ namespace SMS_Api.Controllers
         }
 
         // POST: api/Orders
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Order order)
         {
+            
         }
 
         // PUT: api/Orders/5

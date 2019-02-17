@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SMS_Library.Business.Models
 {
-    public interface IOrder
+    public class MarkUp
     {
-        bool Create(IOrder order);
-        IOrder Edit(IOrder order);
-        bool Delete(IOrder order);
+        public int MarkUpId { get; set; }
+        public int InstitutionId { get; set; }
+        public decimal Charge { get; set; }
     }
 }

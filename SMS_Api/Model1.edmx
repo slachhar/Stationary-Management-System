@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StationaryManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Institution">
+          <Key>
+            <PropertyRef Name="InstitutionId" />
+          </Key>
+          <Property Name="InstitutionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstitutionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InstitutionType" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rank" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StationaryManagementSystem.dbo.InstitutionType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="InstitutionType">
+          <Key>
+            <PropertyRef Name="InstitutionTypeId" />
+          </Key>
+          <Property Name="InstitutionTypeId" Type="int" Nullable="false" />
+          <Property Name="InstitutionTypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Inventary">
+          <Key>
+            <PropertyRef Name="InventaryId" />
+          </Key>
+          <Property Name="InventaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InventaryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InventaryType" Type="int" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="MinStock" Type="int" />
+          <Property Name="MaxStock" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StationaryManagementSystem.dbo.InventaryType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="InventaryType">
+          <Key>
+            <PropertyRef Name="InventaryTypeId" />
+          </Key>
+          <Property Name="InventaryTypeId" Type="int" Nullable="false" />
+          <Property Name="inventaryTypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MarkUp">
+          <Key>
+            <PropertyRef Name="MarkUpId" />
+          </Key>
+          <Property Name="MarkUpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstitutionId" Type="int" />
+          <Property Name="MarkUp" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstitutionId" Type="int" Nullable="false" />
+          <Property Name="InventaryId" Type="int" Nullable="false" />
+          <Property Name="MarkUpId" Type="int" />
+          <Property Name="ExpectedOrderDate" Type="datetime" Nullable="false" />
+          <Property Name="BufferDaysBeforeDelivery" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="StationaryManagementSystemModelStoreContainer">
+          <EntitySet Name="Institution" EntityType="Self.Institution" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventary" EntityType="Self.Inventary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarkUp" EntityType="Self.MarkUp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InstitutionType" EntityType="Self.InstitutionType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [InstitutionType].[InstitutionTypeId] AS [InstitutionTypeId], 
+    [InstitutionType].[InstitutionTypeName] AS [InstitutionTypeName]
+    FROM [dbo].[InstitutionType] AS [InstitutionType]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="InventaryType" EntityType="Self.InventaryType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [InventaryType].[InventaryTypeId] AS [InventaryTypeId], 
+    [InventaryType].[inventaryTypeName] AS [inventaryTypeName]
+    FROM [dbo].[InventaryType] AS [InventaryType]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StationaryManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Institution">
+          <Key>
+            <PropertyRef Name="InstitutionId" />
+          </Key>
+          <Property Name="InstitutionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstitutionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InstitutionType" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rank" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Inventary">
+          <Key>
+            <PropertyRef Name="InventaryId" />
+          </Key>
+          <Property Name="InventaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InventaryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InventaryType" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="MinStock" Type="Int32" />
+          <Property Name="MaxStock" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MarkUp">
+          <Key>
+            <PropertyRef Name="MarkUpId" />
+          </Key>
+          <Property Name="MarkUpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstitutionId" Type="Int32" />
+          <Property Name="MarkUp1" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstitutionId" Type="Int32" Nullable="false" />
+          <Property Name="InventaryId" Type="Int32" Nullable="false" />
+          <Property Name="MarkUpId" Type="Int32" />
+          <Property Name="ExpectedOrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BufferDaysBeforeDelivery" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="InstitutionType">
+          <Key>
+            <PropertyRef Name="InstitutionTypeId" />
+          </Key>
+          <Property Name="InstitutionTypeId" Type="Int32" Nullable="false" />
+          <Property Name="InstitutionTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InventaryType">
+          <Key>
+            <PropertyRef Name="InventaryTypeId" />
+          </Key>
+          <Property Name="InventaryTypeId" Type="Int32" Nullable="false" />
+          <Property Name="inventaryTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="StationaryManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Institutions" EntityType="Self.Institution" />
+          <EntitySet Name="Inventaries" EntityType="Self.Inventary" />
+          <EntitySet Name="MarkUps" EntityType="Self.MarkUp" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="InstitutionTypes" EntityType="Self.InstitutionType" />
+          <EntitySet Name="InventaryTypes" EntityType="Self.InventaryType" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StationaryManagementSystemModelStoreContainer" CdmEntityContainer="StationaryManagementSystemEntities">
+          <EntitySetMapping Name="Institutions">
+            <EntityTypeMapping TypeName="StationaryManagementSystemModel.Institution">
+              <MappingFragment StoreEntitySet="Institution">
+                <ScalarProperty Name="InstitutionId" ColumnName="InstitutionId" />
+                <ScalarProperty Name="InstitutionName" ColumnName="InstitutionName" />
+                <ScalarProperty Name="InstitutionType" ColumnName="InstitutionType" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventaries">
+            <EntityTypeMapping TypeName="StationaryManagementSystemModel.Inventary">
+              <MappingFragment StoreEntitySet="Inventary">
+                <ScalarProperty Name="InventaryId" ColumnName="InventaryId" />
+                <ScalarProperty Name="InventaryName" ColumnName="InventaryName" />
+                <ScalarProperty Name="InventaryType" ColumnName="InventaryType" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MinStock" ColumnName="MinStock" />
+                <ScalarProperty Name="MaxStock" ColumnName="MaxStock" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarkUps">
+            <EntityTypeMapping TypeName="StationaryManagementSystemModel.MarkUp">
+              <MappingFragment StoreEntitySet="MarkUp">
+                <ScalarProperty Name="MarkUpId" ColumnName="MarkUpId" />
+                <ScalarProperty Name="InstitutionId" ColumnName="InstitutionId" />
+                <ScalarProperty Name="MarkUp1" ColumnName="MarkUp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="StationaryManagementSystemModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="InstitutionId" ColumnName="InstitutionId" />
+                <ScalarProperty Name="InventaryId" ColumnName="InventaryId" />
+                <ScalarProperty Name="MarkUpId" ColumnName="MarkUpId" />
+                <ScalarProperty Name="ExpectedOrderDate" ColumnName="ExpectedOrderDate" />
+                <ScalarProperty Name="BufferDaysBeforeDelivery" ColumnName="BufferDaysBeforeDelivery" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InstitutionTypes">
+            <EntityTypeMapping TypeName="StationaryManagementSystemModel.InstitutionType">
+              <MappingFragment StoreEntitySet="InstitutionType">
+                <ScalarProperty Name="InstitutionTypeId" ColumnName="InstitutionTypeId" />
+                <ScalarProperty Name="InstitutionTypeName" ColumnName="InstitutionTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventaryTypes">
+            <EntityTypeMapping TypeName="StationaryManagementSystemModel.InventaryType">
+              <MappingFragment StoreEntitySet="InventaryType">
+                <ScalarProperty Name="InventaryTypeId" ColumnName="InventaryTypeId" />
+                <ScalarProperty Name="inventaryTypeName" ColumnName="inventaryTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

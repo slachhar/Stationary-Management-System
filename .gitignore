@@ -11,3 +11,5 @@ SMS_Library/obj
 StationaryManagementSystem/bin
 StationaryManagementSystem/obj
 StationaryManagementSystem/.vs
+.vs
+packages

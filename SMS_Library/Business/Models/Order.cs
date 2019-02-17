@@ -4,33 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SMS_Library.Business
+namespace SMS_Library.Business.Models
 {
-	public class Order : IOrder
-	{
-		#region Properties
-		public int OrderId { get; set; }
-		public int InstitutionId { get; set; }
-		public int InstitutionType { get; set; }
-		public Dictionary<StationaryItem, int> StationaryItems { get; set; }
+    public class Order: IOrder
+    {
+        public int OrderId { get; set; }
+        public int InstitutionId { get; set; }
+        public int InventaryId { get; set; }
+        public int RequestedQuantity { get; set; }
+        public DateTime ExpectedOrderDate { get; set; }
+        public int MarkUpId { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public int UpdatedBy { get; set; }
+        public DateTime UpdatedOn { get; set; }
 
-		#endregion
+        public virtual bool Create(IOrder order)
+        {
+            throw new NotImplementedException();
+        }
 
-		#region Methods
-		public virtual bool CreateOrder(Order order)
-		{
-			throw new NotImplementedException();
-		}
+        public virtual bool Delete(IOrder order)
+        {
+            throw new NotImplementedException();
+        }
 
-		public virtual bool DeleteOrder(Order order)
-		{
-			throw new NotImplementedException();
-		}
-
-		public virtual Order EditOrder(Order order)
-		{
-			throw new NotImplementedException();
-		}
-		#endregion
-	}
+        public virtual IOrder Edit(IOrder order)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
