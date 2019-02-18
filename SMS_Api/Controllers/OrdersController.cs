@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using SMS_Api.Application.Orders;
 using SMS_Library.Business;
 
 namespace SMS_Api.Controllers
@@ -23,9 +24,10 @@ namespace SMS_Api.Controllers
         }
 
         // POST: api/Orders
-        public void Post([FromBody]Order order)
+        public void Post(Order order)
         {
-            
+            OrderServerCommands orderCreate = new OrderServerCommands();
+            orderCreate.CreateCommand(order);
         }
 
         // PUT: api/Orders/5

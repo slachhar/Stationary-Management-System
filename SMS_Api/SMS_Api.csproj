@@ -140,9 +140,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Orders\OrderServerCommands.Insert.cs" />
+    <Compile Include="Application\Orders\OrderServerCommands.Update.cs" />
+    <Compile Include="Application\Orders\OrderServerCommands.Delete.cs" />
+    <Compile Include="Application\Orders\OrderServerCommands.Main.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Context\SMSContext.cs" />
-    <Compile Include="Context\SMSDBInitializer.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -177,7 +179,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Context\StationaryManagementSystemContext.cs" />
+    <Compile Include="Context\StationaryManagementSystemContext.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -213,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
