@@ -1,52 +1,54 @@
-﻿using SMS_App.Business.Models;
-using SMS_App.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SMS_App.Controllers
+namespace SMS_Api.Controllers
 {
-    public class OrderController : Controller
+    public class InstitutionsController : Controller
     {
-        // GET: Order
+        // GET: Institutions
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Order/Details/5
+        // GET: Institutions/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Order/Create
+        // GET: Institutions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Order/Create
+        // POST: Institutions/Create
         [HttpPost]
-        public ActionResult Create(Order order)
+        public ActionResult Create(FormCollection collection)
         {
-            ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.PostResponse("api/orders/Post", order);
-            response.EnsureSuccessStatusCode();
-            //return RedirectToAction("GetAllProducts");
-            return View();
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        // GET: Order/Edit/5
+        // GET: Institutions/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Order/Edit/5
+        // POST: Institutions/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -62,13 +64,13 @@ namespace SMS_App.Controllers
             }
         }
 
-        // GET: Order/Delete/5
+        // GET: Institutions/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Order/Delete/5
+        // POST: Institutions/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

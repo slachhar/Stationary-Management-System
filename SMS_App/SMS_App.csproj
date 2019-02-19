@@ -80,9 +80,6 @@
     <Reference Include="SMS_Api">
       <HintPath>..\SMS_Api\bin\SMS_Api.dll</HintPath>
     </Reference>
-    <Reference Include="SMS_Library">
-      <HintPath>..\SMS_Library\bin\Debug\SMS_Library.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.dll</HintPath>
@@ -161,11 +158,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Business\Models\Institution.cs" />
+    <Compile Include="Business\Models\Inventary.cs" />
+    <Compile Include="Business\Models\IOrder.cs" />
+    <Compile Include="Business\Models\MarkUp.cs" />
+    <Compile Include="Business\Models\Order.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\ServiceRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -182,7 +183,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Order\CreateOrder.cshtml" />
-    <Content Include="Views\Order\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
