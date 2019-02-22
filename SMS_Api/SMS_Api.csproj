@@ -186,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\Orders\OrderServerCommands.Insert.cs" />
+    <Compile Include="Application\Orders\OrderServerCommands.Fetch.cs" />
     <Compile Include="Application\Orders\OrderServerCommands.Update.cs" />
     <Compile Include="Application\Orders\OrderServerCommands.Delete.cs" />
     <Compile Include="Application\Orders\OrderServerCommands.Main.cs" />

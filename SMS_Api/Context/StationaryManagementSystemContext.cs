@@ -21,5 +21,25 @@ namespace SMS_Api.Context
         {
             smsCmd = new SqlCommand("Order_Create", smsConn);
         }
+
+        public void UpdateSQLCommand()
+        {
+            smsCmd = new SqlCommand("UpdateOrder", smsConn);
+        }
+
+        public void DeleteSQLCommand()
+        {
+            smsCmd = new SqlCommand("DeleteOrder", smsConn);
+        }
+
+        public void GetSQLCommand()
+        {
+            smsCmd = new SqlCommand("GetOrder", smsConn);
+        }
+
+        public void GetByIdSQLCommand()
+        {
+            smsCmd = new SqlCommand("GetOrderById", smsConn);
+        }
     }
 }
