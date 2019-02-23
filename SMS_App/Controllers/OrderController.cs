@@ -20,6 +20,10 @@ namespace SMS_App.Controllers
         // GET: Order/Details/5
         public ActionResult Details(int id)
         {
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.PostResponse("api/orders/Get", id);
+            response.EnsureSuccessStatusCode();
+            //return RedirectToAction("GetAllProducts");
             return View();
         }
 
@@ -48,11 +52,14 @@ namespace SMS_App.Controllers
 
         // POST: Order/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Order order)
         {
             try
             {
-                // TODO: Add update logic here
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.PostResponse("api/orders/Put", order);
+                response.EnsureSuccessStatusCode();
+                //return RedirectToAction("GetAllProducts");
 
                 return RedirectToAction("Index");
             }
@@ -74,7 +81,9 @@ namespace SMS_App.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.PostResponse("api/orders/Delete", id);
+                response.EnsureSuccessStatusCode();
 
                 return RedirectToAction("Index");
             }
