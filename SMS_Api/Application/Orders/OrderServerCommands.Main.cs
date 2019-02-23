@@ -4,24 +4,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SMS_Library.Business;
+using SMS_Api.Context;
 
 namespace SMS_Api.Application.Orders
 {
     public partial class OrderServerCommands
     {
+        StationaryManagementSystem sms = new StationaryManagementSystem();
+
+        public Order GetCommand(int orderId)
+        {
+            return GetOrderByOrderId(orderId);
+        }
+
         public bool CreateCommand(Order order)
         {
-            return Create(order);
+            return CreateOrder(order);
         }
 
-        public bool DeleteCommand(Order order)
+        public bool DeleteCommand(int orderId)
         {
-            return Delete(order);
+            return DeleteOrder(orderId);
         }
 
-        public Order EditCommand(Order order)
+        public bool EditCommand(Order order)
         {
-            return Edit(order);
+            return UpdateOrder(order);
         }
     }
 }

@@ -20,7 +20,8 @@ namespace SMS_Api.Controllers
         // GET: api/Orders/5
         public Order Get(int id)
         {
-            return new Order();
+            OrderServerCommands orderCreate = new OrderServerCommands();            
+            return orderCreate.GetCommand(id);
         }
 
         // POST: api/Orders
@@ -31,13 +32,17 @@ namespace SMS_Api.Controllers
         }
 
         // PUT: api/Orders/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, Order order)
         {
+            OrderServerCommands orderCreate = new OrderServerCommands();
+            orderCreate.EditCommand(order);
         }
 
         // DELETE: api/Orders/5
         public void Delete(int id)
         {
+            OrderServerCommands orderCreate = new OrderServerCommands();
+            orderCreate.DeleteCommand(id);
         }
     }
 }

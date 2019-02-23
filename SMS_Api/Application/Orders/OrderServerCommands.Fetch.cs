@@ -9,20 +9,76 @@ namespace SMS_Api.Application.Orders
 {
     public  partial class OrderServerCommands
     {
-        public bool GetOrder(Order order)
-        {
-            conn.GetByIdSQLCommand();
 
-            conn.smsCmd.CommandType = CommandType.StoredProcedure;
-            conn.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = order.InstitutionId;
-            conn.smsConn.Open();
-            object o = conn.smsCmd.ExecuteScalar();
-            if (o != null)
+        public Order GetOrderByOrderId(int orderId)
+        {
+            sms.GetOrderByOrderIdSQLCommand();
+
+            sms.smsCmd.CommandType = CommandType.StoredProcedure;
+            sms.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
+            sms.smsConn.Open();
+            sms.SqlReader();
+           
+            Order order = null;
+            while (sms.reader.Read())
             {
-                string id = o.ToString();
+                order = new Order();
+                order.OrderId = int.Parse(sms.reader["OrderId"].ToString());
+                order.InstitutionId = int.Parse(sms.reader["InstitutionId"].ToString());
+                order.InventaryId = int.Parse(sms.reader["InventaryId"].ToString());
+                order.MarkUpId = int.Parse(sms.reader["MarkUpId"].ToString());
             }
-            conn.smsConn.Close();
-            return true;
-        }
+            sms.reader.Close();
+            sms.smsConn.Close();
+            return order;
+        } 
+
+        //public bool GetOrderByOrderId(int orderId)
+        //{
+        //    sms.GetOrderByOrderIdSQLCommand();
+
+        //    sms.smsCmd.CommandType = CommandType.StoredProcedure;
+        //    sms.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
+        //    sms.smssms.Open();
+        //    object o = sms.smsCmd.ExecuteScalar();
+        //    if (o != null)
+        //    {
+        //        string id = o.ToString();
+        //    }
+        //    sms.smssms.Close();
+        //    return true;
+        //}
+
+        //public bool GetOrderByInstitutionId(int institutionId)
+        //{
+        //    sms.GetOrderByInstitutionIdSQLCommand();
+
+        //    sms.smsCmd.CommandType = CommandType.StoredProcedure;
+        //    sms.smsCmd.Parameters.Add("@institutionId", SqlDbType.Int).Value = institutionId;
+        //    sms.smssms.Open();
+        //    object o = sms.smsCmd.ExecuteScalar();
+        //    if (o != null)
+        //    {
+        //        string id = o.ToString();
+        //    }
+        //    sms.smssms.Close();
+        //    return true;
+        //}
+
+        //public bool GetOrderByInventaryId(int inventaryId)
+        //{
+        //    sms.GetOrderByInventaryIdSQLCommand();
+
+        //    sms.smsCmd.CommandType = CommandType.StoredProcedure;
+        //    sms.smsCmd.Parameters.Add("@inventaryId", SqlDbType.Int).Value = inventaryId;
+        //    sms.smssms.Open();
+        //    object o = sms.smsCmd.ExecuteScalar();
+        //    if (o != null)
+        //    {
+        //        string id = o.ToString();
+        //    }
+        //    sms.smssms.Close();
+        //    return true;
+        //}
     }
 }
