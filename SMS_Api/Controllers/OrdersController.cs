@@ -7,7 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using Newtonsoft.Json;
 using SMS_Api.Application.Orders;
-using SMS_Library.Business;
+using SMS_Api.Common.Settings;
 
 namespace SMS_Api.Controllers
 {
@@ -16,19 +16,15 @@ namespace SMS_Api.Controllers
         // GET: api/Orders
         public JsonResult<IEnumerable<Order>> Get()
         {
-            var settings = new JsonSerializerSettings();
-            settings.NullValueHandling = NullValueHandling.Ignore;
             OrderServerCommands orderCreate = new OrderServerCommands();
-            return Json(orderCreate.GetAllOrdersCommand(), settings);
+            return Json(orderCreate.GetAllOrdersCommand(), JsonResponseSettings.SetJsonSerializerSettings());
         }
 
         // GET: api/Orders/5
         public JsonResult<Order> Get(int id)
         {
-            var settings = new JsonSerializerSettings();
-            settings.NullValueHandling = NullValueHandling.Ignore;
             OrderServerCommands orderCreate = new OrderServerCommands(); 
-            return Json(orderCreate.GetCommand(id), settings);
+            return Json(orderCreate.GetCommand(id), JsonResponseSettings.SetJsonSerializerSettings());
         }
 
         // POST: api/Orders
