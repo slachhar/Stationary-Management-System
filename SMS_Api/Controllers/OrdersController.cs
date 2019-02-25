@@ -14,9 +14,12 @@ namespace SMS_Api.Controllers
     public class OrdersController : ApiController
     {
         // GET: api/Orders
-        public IEnumerable<Order> Get()
+        public JsonResult<IEnumerable<Order>> Get()
         {
-			return new List<Order>();
+            var settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            OrderServerCommands orderCreate = new OrderServerCommands();
+            return Json(orderCreate.GetAllOrdersCommand(), settings);
         }
 
         // GET: api/Orders/5
@@ -24,11 +27,7 @@ namespace SMS_Api.Controllers
         {
             var settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
-            OrderServerCommands orderCreate = new OrderServerCommands();            
-           // return orderCreate.GetCommand(id);
-
-          
-
+            OrderServerCommands orderCreate = new OrderServerCommands(); 
             return Json(orderCreate.GetCommand(id), settings);
         }
 

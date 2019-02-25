@@ -23,7 +23,7 @@ namespace SMS_Api.Context
             reader = smsCmd.ExecuteReader();
         }
 
-        public  void GetOrderSQLCommand()
+        public  void GetAllOrdersSQLCommand()
         {
             smsCmd = new SqlCommand("GetOrder", smsConn);
         }

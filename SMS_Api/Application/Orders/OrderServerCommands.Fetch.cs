@@ -31,23 +31,30 @@ namespace SMS_Api.Application.Orders
             sms.reader.Close();
             sms.smsConn.Close();
             return order;
-        } 
+        }
 
-        //public bool GetOrderByOrderId(int orderId)
-        //{
-        //    sms.GetOrderByOrderIdSQLCommand();
+        public IEnumerable<Order> GetAllOrders()
+        {
+            sms.GetAllOrdersSQLCommand();
 
-        //    sms.smsCmd.CommandType = CommandType.StoredProcedure;
-        //    sms.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
-        //    sms.smssms.Open();
-        //    object o = sms.smsCmd.ExecuteScalar();
-        //    if (o != null)
-        //    {
-        //        string id = o.ToString();
-        //    }
-        //    sms.smssms.Close();
-        //    return true;
-        //}
+            sms.smsCmd.CommandType = CommandType.StoredProcedure;
+            sms.smsConn.Open();
+            sms.SqlReader();
+            List<Order> orderList = new List<Order>();
+            Order order = null;
+            while (sms.reader.Read())
+            {
+                order = new Order();
+                order.OrderId = int.Parse(sms.reader["OrderId"].ToString());
+                order.InstitutionId = int.Parse(sms.reader["InstitutionId"].ToString());
+                order.InventaryId = int.Parse(sms.reader["InventaryId"].ToString());
+                order.MarkUpId = int.Parse(sms.reader["MarkUpId"].ToString());
+                orderList.Add(order);
+            }
+            sms.reader.Close();
+            sms.smsConn.Close();
+            return orderList;
+        }
 
         //public bool GetOrderByInstitutionId(int institutionId)
         //{

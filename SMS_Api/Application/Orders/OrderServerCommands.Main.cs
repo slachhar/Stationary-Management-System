@@ -12,6 +12,11 @@ namespace SMS_Api.Application.Orders
     {
         StationaryManagementSystem sms = new StationaryManagementSystem();
 
+        public IEnumerable<Order> GetAllOrdersCommand()
+        {
+            return GetAllOrders();
+        }
+
         public Order GetCommand(int orderId)
         {
             return GetOrderByOrderId(orderId);
