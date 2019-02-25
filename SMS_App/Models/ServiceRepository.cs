@@ -15,8 +15,10 @@ namespace SMS_App.Models
             Client.BaseAddress = new Uri("http://localhost:57015/");
         }
         public HttpResponseMessage GetResponse(string url)
-        {
-            return Client.GetAsync(url).Result;
+        {           
+            var responseTask = Client.GetAsync(url);
+            responseTask.Wait();
+            return responseTask.Result;
         }
         public HttpResponseMessage PutResponse(string url, object model)
         {

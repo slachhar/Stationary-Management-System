@@ -14,6 +14,7 @@ namespace SMS_Api.Application.Orders
             sms.UpdateOrderSQLCommand();
 
             sms.smsCmd.CommandType = CommandType.StoredProcedure;
+            sms.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = order.OrderId;
             sms.smsCmd.Parameters.Add("@InstitutionId", SqlDbType.Int).Value = order.InstitutionId;
             sms.smsCmd.Parameters.Add("@InventaryId", SqlDbType.Int).Value = order.InventaryId;
             sms.smsCmd.Parameters.Add("@MarkUpId", SqlDbType.Int).Value = order.MarkUpId;

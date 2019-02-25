@@ -21,16 +21,24 @@ namespace SMS_App.Controllers
         public ActionResult Details(int id)
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.PostResponse("api/orders/Get", id);
+            HttpResponseMessage response = serviceObj.GetResponse("api/Orders/"+ id);
             response.EnsureSuccessStatusCode();
             //return RedirectToAction("GetAllProducts");
-            return View();
+            Order order = new Order();
+            if (response.IsSuccessStatusCode)
+            {
+                var readTask = response.Content.ReadAsAsync<Order>();
+                readTask.Wait();
+
+                order = readTask.Result;
+            }
+            return View(order);
         }
 
         // GET: Order/Create
         public ActionResult Create()
         {
-            return View();
+            return View("CreateOrder");
         }
 
         // POST: Order/Create
@@ -38,10 +46,10 @@ namespace SMS_App.Controllers
         public ActionResult Create(Order order)
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.PostResponse("api/orders/Post", order);
+            HttpResponseMessage response = serviceObj.PostResponse("api/Orders", order);
             response.EnsureSuccessStatusCode();
             //return RedirectToAction("GetAllProducts");
-            return View();
+            return View("CreateOrder");
         }
 
         // GET: Order/Edit/5
@@ -57,7 +65,7 @@ namespace SMS_App.Controllers
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PostResponse("api/orders/Put", order);
+                HttpResponseMessage response = serviceObj.PutResponse("api/Orders", order);
                 response.EnsureSuccessStatusCode();
                 //return RedirectToAction("GetAllProducts");
 
@@ -72,7 +80,19 @@ namespace SMS_App.Controllers
         // GET: Order/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/Orders/" + id);
+            response.EnsureSuccessStatusCode();
+            //return RedirectToAction("GetAllProducts");
+            Order order = new Order();
+            if (response.IsSuccessStatusCode)
+            {
+                var readTask = response.Content.ReadAsAsync<Order>();
+                readTask.Wait();
+
+                order = readTask.Result;
+            }
+            return View(order);
         }
 
         // POST: Order/Delete/5
@@ -82,7 +102,7 @@ namespace SMS_App.Controllers
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PostResponse("api/orders/Delete", id);
+                HttpResponseMessage response = serviceObj.DeleteResponse("api/orders/"+ id);
                 response.EnsureSuccessStatusCode();
 
                 return RedirectToAction("Index");

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SMS_App.Business.Models.Order>
+﻿@model SMS_App.Business.Models.Order
 
 @{
     ViewBag.Title = "Details";
@@ -6,76 +6,85 @@
 
 <h2>Details</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
             @Html.DisplayNameFor(model => model.InstitutionId)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstitutionId)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.InventaryId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequestedQuantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExpectedOrderDate)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InventaryId)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.MarkUpId)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarkUpId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpectedOrderDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpectedOrderDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BufferDaysBeforeDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BufferDaysBeforeDelivery)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.UpdatedBy)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.UpdatedOn)
-        </th>
-        <th></th>
-    </tr>
+        </dt>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.InstitutionId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InventaryId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestedQuantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpectedOrderDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MarkUpId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedOn)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
-        </td>
-    </tr>
-}
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
 
-</table>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

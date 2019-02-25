@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
+using Newtonsoft.Json;
 using SMS_Api.Application.Orders;
 using SMS_Library.Business;
 
@@ -18,10 +20,16 @@ namespace SMS_Api.Controllers
         }
 
         // GET: api/Orders/5
-        public Order Get(int id)
+        public JsonResult<Order> Get(int id)
         {
+            var settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
             OrderServerCommands orderCreate = new OrderServerCommands();            
-            return orderCreate.GetCommand(id);
+           // return orderCreate.GetCommand(id);
+
+          
+
+            return Json(orderCreate.GetCommand(id), settings);
         }
 
         // POST: api/Orders

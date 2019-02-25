@@ -11,9 +11,10 @@ namespace SMS_App.Business.Models
         public int OrderId { get; set; }
         public int InstitutionId { get; set; }
         public int InventaryId { get; set; }
-        public int RequestedQuantity { get; set; }
-        public DateTime ExpectedOrderDate { get; set; }
         public int MarkUpId { get; set; }
+        //public int RequestedQuantity { get; set; }
+        public DateTime ExpectedOrderDate { get; set; }
+        public int BufferDaysBeforeDelivery { get; set; }        
         public int CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public int UpdatedBy { get; set; }
