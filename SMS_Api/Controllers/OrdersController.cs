@@ -8,44 +8,45 @@ using System.Web.Http.Results;
 using Newtonsoft.Json;
 using SMS_Api.Application.Orders;
 using SMS_Api.Common.Settings;
+using SMS_Library.Repositories;
 
 namespace SMS_Api.Controllers
 {
     public class OrdersController : ApiController
     {
+		public IOrderRepository OrderRepository { get; set; }
+		public OrdersController(IOrderRepository orderRepository)
+		{
+			this.OrderRepository = orderRepository;
+		}
         // GET: api/Orders
-        public JsonResult<IEnumerable<Order>> Get()
+        public JsonResult<IEnumerable<SMS_Library.Business.Models.Order>> Get()
         {
-            OrderServerCommands orderCreate = new OrderServerCommands();
-            return Json(orderCreate.GetAllOrdersCommand(), JsonResponseSettings.SetJsonSerializerSettings());
+            return Json(OrderRepository.GetAllOrdersCommand(), JsonResponseSettings.SetJsonSerializerSettings());
         }
 
         // GET: api/Orders/5
-        public JsonResult<Order> Get(int id)
+        public JsonResult<SMS_Library.Business.Models.Order> Get(int id)
         {
-            OrderServerCommands orderCreate = new OrderServerCommands(); 
-            return Json(orderCreate.GetCommand(id), JsonResponseSettings.SetJsonSerializerSettings());
+            return Json(OrderRepository.GetCommand(id), JsonResponseSettings.SetJsonSerializerSettings());
         }
 
         // POST: api/Orders
-        public void Post(Order order)
+        public void Post(SMS_Library.Business.Models.Order order)
         {
-            OrderServerCommands orderCreate = new OrderServerCommands();
-            orderCreate.CreateCommand(order);
+			OrderRepository.CreateCommand(order);
         }
 
         // PUT: api/Orders/5
-        public void Put(int id, Order order)
+        public void Put(int id, SMS_Library.Business.Models.Order order)
         {
-            OrderServerCommands orderCreate = new OrderServerCommands();
-            orderCreate.EditCommand(order);
+			OrderRepository.EditCommand(order);
         }
 
         // DELETE: api/Orders/5
         public void Delete(int id)
         {
-            OrderServerCommands orderCreate = new OrderServerCommands();
-            orderCreate.DeleteCommand(id);
+			OrderRepository.DeleteCommand(id);
         }
     }
 }

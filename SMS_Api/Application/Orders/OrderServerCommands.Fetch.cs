@@ -7,84 +7,83 @@ using System.Web;
 
 namespace SMS_Api.Application.Orders
 {
-    public  partial class OrderServerCommands
+    public static partial class OrderServerCommands
     {
-
-        public Order GetOrderByOrderId(int orderId)
+		public static SMS_Library.Business.Models.Order GetOrderByOrderId(int orderId)
         {
-            sms.GetOrderByOrderIdSQLCommand();
+			StationaryManagementSystem.GetOrderByOrderIdSQLCommand();
 
-            sms.smsCmd.CommandType = CommandType.StoredProcedure;
-            sms.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
-            sms.smsConn.Open();
-            sms.SqlReader();
-           
-            Order order = null;
-            while (sms.reader.Read())
+			StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
+            StationaryManagementSystem.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
+            StationaryManagementSystem.smsConn.Open();
+            StationaryManagementSystem.SqlReader();
+
+			SMS_Library.Business.Models.Order order = null;
+            while (StationaryManagementSystem.reader.Read())
             {
-                order = new Order();
-                order.OrderId = int.Parse(sms.reader["OrderId"].ToString());
-                order.InstitutionId = int.Parse(sms.reader["InstitutionId"].ToString());
-                order.InventaryId = int.Parse(sms.reader["InventaryId"].ToString());
-                order.MarkUpId = int.Parse(sms.reader["MarkUpId"].ToString());
+                order = new SMS_Library.Business.Models.Order();
+                order.OrderId = int.Parse(StationaryManagementSystem.reader["OrderId"].ToString());
+                order.InstitutionId = int.Parse(StationaryManagementSystem.reader["InstitutionId"].ToString());
+                order.InventaryId = int.Parse(StationaryManagementSystem.reader["InventaryId"].ToString());
+                order.MarkUpId = int.Parse(StationaryManagementSystem.reader["MarkUpId"].ToString());
             }
-            sms.reader.Close();
-            sms.smsConn.Close();
+            StationaryManagementSystem.reader.Close();
+            StationaryManagementSystem.smsConn.Close();
             return order;
         }
 
-        public IEnumerable<Order> GetAllOrders()
+        public static IEnumerable<SMS_Library.Business.Models.Order> GetAllOrders()
         {
-            sms.GetAllOrdersSQLCommand();
+            StationaryManagementSystem.GetAllOrdersSQLCommand();
 
-            sms.smsCmd.CommandType = CommandType.StoredProcedure;
-            sms.smsConn.Open();
-            sms.SqlReader();
-            List<Order> orderList = new List<Order>();
-            Order order = null;
-            while (sms.reader.Read())
+            StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
+            StationaryManagementSystem.smsConn.Open();
+            StationaryManagementSystem.SqlReader();
+            List<SMS_Library.Business.Models.Order> orderList = new List<SMS_Library.Business.Models.Order>();
+            SMS_Library.Business.Models.Order order = null;
+            while (StationaryManagementSystem.reader.Read())
             {
-                order = new Order();
-                order.OrderId = int.Parse(sms.reader["OrderId"].ToString());
-                order.InstitutionId = int.Parse(sms.reader["InstitutionId"].ToString());
-                order.InventaryId = int.Parse(sms.reader["InventaryId"].ToString());
-                order.MarkUpId = int.Parse(sms.reader["MarkUpId"].ToString());
+                order = new SMS_Library.Business.Models.Order();
+                order.OrderId = int.Parse(StationaryManagementSystem.reader["OrderId"].ToString());
+                order.InstitutionId = int.Parse(StationaryManagementSystem.reader["InstitutionId"].ToString());
+                order.InventaryId = int.Parse(StationaryManagementSystem.reader["InventaryId"].ToString());
+                order.MarkUpId = int.Parse(StationaryManagementSystem.reader["MarkUpId"].ToString());
                 orderList.Add(order);
             }
-            sms.reader.Close();
-            sms.smsConn.Close();
+            StationaryManagementSystem.reader.Close();
+            StationaryManagementSystem.smsConn.Close();
             return orderList;
         }
 
         //public bool GetOrderByInstitutionId(int institutionId)
         //{
-        //    sms.GetOrderByInstitutionIdSQLCommand();
+        //    StationaryManagementSystem.GetOrderByInstitutionIdSQLCommand();
 
-        //    sms.smsCmd.CommandType = CommandType.StoredProcedure;
-        //    sms.smsCmd.Parameters.Add("@institutionId", SqlDbType.Int).Value = institutionId;
-        //    sms.smssms.Open();
-        //    object o = sms.smsCmd.ExecuteScalar();
+        //    StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
+        //    StationaryManagementSystem.smsCmd.Parameters.Add("@institutionId", SqlDbType.Int).Value = institutionId;
+        //    StationaryManagementSystem.smsStationaryManagementSystem.Open();
+        //    object o = StationaryManagementSystem.smsCmd.ExecuteScalar();
         //    if (o != null)
         //    {
         //        string id = o.ToString();
         //    }
-        //    sms.smssms.Close();
+        //    StationaryManagementSystem.smsStationaryManagementSystem.Close();
         //    return true;
         //}
 
         //public bool GetOrderByInventaryId(int inventaryId)
         //{
-        //    sms.GetOrderByInventaryIdSQLCommand();
+        //    StationaryManagementSystem.GetOrderByInventaryIdSQLCommand();
 
-        //    sms.smsCmd.CommandType = CommandType.StoredProcedure;
-        //    sms.smsCmd.Parameters.Add("@inventaryId", SqlDbType.Int).Value = inventaryId;
-        //    sms.smssms.Open();
-        //    object o = sms.smsCmd.ExecuteScalar();
+        //    StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
+        //    StationaryManagementSystem.smsCmd.Parameters.Add("@inventaryId", SqlDbType.Int).Value = inventaryId;
+        //    StationaryManagementSystem.smsStationaryManagementSystem.Open();
+        //    object o = StationaryManagementSystem.smsCmd.ExecuteScalar();
         //    if (o != null)
         //    {
         //        string id = o.ToString();
         //    }
-        //    sms.smssms.Close();
+        //    StationaryManagementSystem.smsStationaryManagementSystem.Close();
         //    return true;
         //}
     }

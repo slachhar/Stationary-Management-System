@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\Models\IOrder.cs" />
     <Compile Include="Business\Models\Institution.cs" />
     <Compile Include="Business\Models\Inventary.cs" />
     <Compile Include="Business\Models\MarkUp.cs" />

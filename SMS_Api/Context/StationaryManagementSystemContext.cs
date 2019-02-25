@@ -7,53 +7,53 @@ using System.Web;
 
 namespace SMS_Api.Context
 {
-    public  class StationaryManagementSystem
+    public static class StationaryManagementSystem
     {
-        public  SqlConnection smsConn;
-        public  SqlCommand smsCmd;
-        public  SqlDataReader reader;
+        public static SqlConnection smsConn;
+        public static SqlCommand smsCmd;
+        public static SqlDataReader reader;
 
-        public StationaryManagementSystem()
+        static StationaryManagementSystem()
         {
             smsConn = new SqlConnection(ConfigurationManager.ConnectionStrings["StationaryManagementSystemConnectionString"].ConnectionString);
         }
 
-        public  void SqlReader()
+        public static void SqlReader()
         {
             reader = smsCmd.ExecuteReader();
         }
 
-        public  void GetAllOrdersSQLCommand()
+        public static void GetAllOrdersSQLCommand()
         {
             smsCmd = new SqlCommand("GetOrder", smsConn);
         }
 
-        public  void GetOrderByOrderIdSQLCommand()
+        public static void GetOrderByOrderIdSQLCommand()
         {
             smsCmd = new SqlCommand("GetOrderById", smsConn);
         }
 
-        public  void GetOrderByInventaryIdSQLCommand()
+        public static void GetOrderByInventaryIdSQLCommand()
         {
             smsCmd = new SqlCommand("GetOrderById", smsConn);
         }
 
-        public  void GetOrderByInstitutionIdSQLCommand()
+        public static void GetOrderByInstitutionIdSQLCommand()
         {
             smsCmd = new SqlCommand("GetOrderByInstitutionId", smsConn);
         }
 
-        public  void CreateOrderSQLCommand()
+        public static void CreateOrderSQLCommand()
         {
             smsCmd = new SqlCommand("OrderCreate", smsConn);
         }
 
-        public  void UpdateOrderSQLCommand()
+        public static void UpdateOrderSQLCommand()
         {
             smsCmd = new SqlCommand("UpdateOrder", smsConn);
         }
 
-        public  void DeleteOrderSQLCommand()
+        public static void DeleteOrderSQLCommand()
         {
             smsCmd = new SqlCommand("DeleteOrder", smsConn);
         }      

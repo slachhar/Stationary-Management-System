@@ -8,33 +8,32 @@ using SMS_Api.Context;
 
 namespace SMS_Api.Application.Orders
 {
-    public partial class OrderServerCommands
+    public static partial class OrderServerCommands
     {
-        StationaryManagementSystem sms = new StationaryManagementSystem();
 
-        public IEnumerable<Order> GetAllOrdersCommand()
-        {
-            return GetAllOrders();
-        }
+        //public IEnumerable<Order> GetAllOrdersCommand()
+        //{
+        //    return GetAllOrders();
+        //}
 
-        public Order GetCommand(int orderId)
-        {
-            return GetOrderByOrderId(orderId);
-        }
+        //public Order GetCommand(int orderId)
+        //{
+        //    return GetOrderByOrderId(orderId);
+        //}
 
-        public bool CreateCommand(Order order)
-        {
-            return CreateOrder(order);
-        }
+        //public bool CreateCommand(Order order)
+        //{
+        //    return CreateOrder(order);
+        //}
 
-        public bool DeleteCommand(int orderId)
-        {
-            return DeleteOrder(orderId);
-        }
+        //public bool DeleteCommand(int orderId)
+        //{
+        //    return DeleteOrder(orderId);
+        //}
 
-        public bool EditCommand(Order order)
-        {
-            return UpdateOrder(order);
-        }
+        //public bool EditCommand(Order order)
+        //{
+        //    return UpdateOrder(order);
+        //}
     }
 }

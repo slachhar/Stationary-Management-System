@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SMS_Api.Context;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -6,21 +7,21 @@ using System.Web;
 
 namespace SMS_Api.Application.Orders
 {
-    public  partial class OrderServerCommands
+    public static partial class OrderServerCommands
     {
-        public bool DeleteOrder(int orderId)
+        public static bool DeleteOrder(int orderId)
         {
-            sms.DeleteOrderSQLCommand();
+            StationaryManagementSystem.DeleteOrderSQLCommand();
 
-            sms.smsCmd.CommandType = CommandType.StoredProcedure;
-            sms.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
-            sms.smsConn.Open();
-            object o = sms.smsCmd.ExecuteScalar();
+            StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
+            StationaryManagementSystem.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
+            StationaryManagementSystem.smsConn.Open();
+            object o = StationaryManagementSystem.smsCmd.ExecuteScalar();
             if (o != null)
             {
                 string id = o.ToString();
             }
-            sms.smsConn.Close();
+            StationaryManagementSystem.smsConn.Close();
             return true;
         }
     }

@@ -241,6 +241,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\Orders\IOrderRepository.cs" />
+    <Compile Include="Repositories\Orders\OrderRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
