@@ -13,7 +13,8 @@ namespace SMS_Library.Business.Models
 		public int InventaryId { get; set; }
 		public int RequestedQuantity { get; set; }
 		public DateTime ExpectedOrderDate { get; set; }
-		public int MarkUpId { get; set; }
+        public int BufferDaysBeforeDelivery { get; set; }
+        public int MarkUpId { get; set; }
 		public int CreatedBy { get; set; }
 		public DateTime CreatedOn { get; set; }
 		public int UpdatedBy { get; set; }

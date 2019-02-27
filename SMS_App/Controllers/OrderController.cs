@@ -60,8 +60,7 @@ namespace SMS_App.Controllers
             ServiceRepository serviceObj = new ServiceRepository();
             HttpResponseMessage response = serviceObj.PostResponse("api/Orders", order);
             response.EnsureSuccessStatusCode();
-            //return RedirectToAction("GetAllProducts");
-            return View("CreateOrder");
+            return RedirectToAction("Index");
         }
 
         // GET: Order/Edit/5
