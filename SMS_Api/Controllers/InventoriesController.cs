@@ -6,27 +6,27 @@ using System.Web.Mvc;
 
 namespace SMS_Api.Controllers
 {
-    public class InventariesController : Controller
+    public class InventoriesController : Controller
     {
-        // GET: Inventaries
+        // GET: Inventories
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Inventaries/Details/5
+        // GET: Inventories/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Inventaries/Create
+        // GET: Inventories/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Inventaries/Create
+        // POST: Inventories/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -42,13 +42,13 @@ namespace SMS_Api.Controllers
             }
         }
 
-        // GET: Inventaries/Edit/5
+        // GET: Inventories/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Inventaries/Edit/5
+        // POST: Inventories/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -64,13 +64,13 @@ namespace SMS_Api.Controllers
             }
         }
 
-        // GET: Inventaries/Delete/5
+        // GET: Inventories/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Inventaries/Delete/5
+        // POST: Inventories/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

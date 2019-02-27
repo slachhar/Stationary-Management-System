@@ -14,39 +14,39 @@ namespace SMS_Api.Controllers
 {
     public class OrdersController : ApiController
     {
-		public IOrderRepository OrderRepository { get; set; }
+		public IOrderRepository _orderRepository { get; set; }
 		public OrdersController(IOrderRepository orderRepository)
 		{
-			this.OrderRepository = orderRepository;
+			_orderRepository = orderRepository;
 		}
         // GET: api/Orders
         public JsonResult<IEnumerable<SMS_Library.Business.Models.Order>> Get()
         {
-            return Json(OrderRepository.GetAllOrdersCommand(), JsonResponseSettings.SetJsonSerializerSettings());
+            return Json(_orderRepository.GetAllOrdersCommand(), JsonResponseSettings.SetJsonSerializerSettings());
         }
 
         // GET: api/Orders/5
         public JsonResult<SMS_Library.Business.Models.Order> Get(int id)
         {
-            return Json(OrderRepository.GetCommand(id), JsonResponseSettings.SetJsonSerializerSettings());
+            return Json(_orderRepository.GetCommand(id), JsonResponseSettings.SetJsonSerializerSettings());
         }
 
         // POST: api/Orders
         public void Post(SMS_Library.Business.Models.Order order)
         {
-			OrderRepository.CreateCommand(order);
+			_orderRepository.CreateCommand(order);
         }
 
         // PUT: api/Orders/5
         public void Put(int id, SMS_Library.Business.Models.Order order)
         {
-			OrderRepository.EditCommand(order);
+			_orderRepository.EditCommand(order);
         }
 
         // DELETE: api/Orders/5
         public void Delete(int id)
         {
-			OrderRepository.DeleteCommand(id);
+			_orderRepository.DeleteCommand(id);
         }
     }
 }
