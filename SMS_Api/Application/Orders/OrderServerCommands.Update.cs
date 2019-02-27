@@ -1,4 +1,5 @@
-﻿using SMS_Api.Context;
+﻿using SMS_Api.Common.Constants;
+using SMS_Api.Context;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +12,7 @@ namespace SMS_Api.Application.Orders
     {
         public static bool UpdateOrder(SMS_Library.Business.Models.Order order)
         {
-            StationaryManagementSystem.UpdateOrderSQLCommand();
+            StationaryManagementSystem.SetSQLCommand(DBConstants.UpdateOrder);
 
             StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
             StationaryManagementSystem.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = order.OrderId;

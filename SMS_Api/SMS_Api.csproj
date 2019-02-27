@@ -225,12 +225,12 @@
     <Compile Include="Application\Orders\OrderServerCommands.Fetch.cs" />
     <Compile Include="Application\Orders\OrderServerCommands.Update.cs" />
     <Compile Include="Application\Orders\OrderServerCommands.Delete.cs" />
-    <Compile Include="Application\Orders\OrderServerCommands.Main.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\Constants\DBConstants.cs" />
     <Compile Include="Common\Settings\JsonResponseSettings.cs" />
     <Compile Include="Controllers\InstitutionsController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
@@ -278,6 +278,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\Inventories\IInventoryRepository.cs" />
+    <Compile Include="Repositories\Inventories\InventoryRepository.cs" />
     <Compile Include="Repositories\Orders\IOrderRepository.cs" />
     <Compile Include="Repositories\Orders\OrderRepository.cs" />
   </ItemGroup>
@@ -313,9 +315,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Application\Inventory\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Repositories\Inventories\" />
     <Folder Include="Views\Institutions\" />
     <Folder Include="Views\Inventaries\" />
   </ItemGroup>

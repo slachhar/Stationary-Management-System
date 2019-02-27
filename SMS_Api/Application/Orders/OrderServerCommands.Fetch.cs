@@ -1,4 +1,5 @@
-﻿using SMS_Api.Context;
+﻿using SMS_Api.Common.Constants;
+using SMS_Api.Context;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +12,7 @@ namespace SMS_Api.Application.Orders
     {
 		public static SMS_Library.Business.Models.Order GetOrderByOrderId(int orderId)
         {
-			StationaryManagementSystem.GetOrderByOrderIdSQLCommand();
+			StationaryManagementSystem.SetSQLCommand(DBConstants.GetOrderById);
 
 			StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
             StationaryManagementSystem.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
@@ -34,7 +35,7 @@ namespace SMS_Api.Application.Orders
 
         public static IEnumerable<SMS_Library.Business.Models.Order> GetAllOrders()
         {
-            StationaryManagementSystem.GetAllOrdersSQLCommand();
+            StationaryManagementSystem.SetSQLCommand(DBConstants.GetOrder);
 
             StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
             StationaryManagementSystem.smsConn.Open();
