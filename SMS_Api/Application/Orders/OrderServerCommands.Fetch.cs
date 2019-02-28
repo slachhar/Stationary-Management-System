@@ -10,26 +10,33 @@ namespace SMS_Api.Application.Orders
 {
     public static partial class OrderServerCommands
     {
-		public static SMS_Library.Business.Models.Order GetOrderByOrderId(int orderId)
+        public static SMS_Library.Business.Models.Order GetOrderByOrderId(int orderId)
         {
-			StationaryManagementSystem.SetSQLCommand(DBConstants.GetOrderById);
-
-			StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
-            StationaryManagementSystem.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
-            StationaryManagementSystem.smsConn.Open();
-            StationaryManagementSystem.SqlReader();
-
-			SMS_Library.Business.Models.Order order = null;
-            while (StationaryManagementSystem.reader.Read())
+            SMS_Library.Business.Models.Order order = null;
+            try
             {
-                order = new SMS_Library.Business.Models.Order();
-                order.OrderId = int.Parse(StationaryManagementSystem.reader["OrderId"].ToString());
-                order.InstitutionId = int.Parse(StationaryManagementSystem.reader["InstitutionId"].ToString());
-                order.InventaryId = int.Parse(StationaryManagementSystem.reader["InventaryId"].ToString());
-                order.MarkUpId = int.Parse(StationaryManagementSystem.reader["MarkUpId"].ToString());
+                StationaryManagementSystem.SetSQLCommand(DBConstants.GetOrderById);
+
+                StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
+                StationaryManagementSystem.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
+                StationaryManagementSystem.smsConn.Open();
+                StationaryManagementSystem.SqlReader();
+
+                
+                while (StationaryManagementSystem.reader.Read())
+                {
+                    order = new SMS_Library.Business.Models.Order();
+                    order.OrderId = int.Parse(StationaryManagementSystem.reader["OrderId"].ToString());
+                    order.InstitutionId = int.Parse(StationaryManagementSystem.reader["InstitutionId"].ToString());
+                    order.InventaryId = int.Parse(StationaryManagementSystem.reader["InventaryId"].ToString());
+                    order.MarkUpId = int.Parse(StationaryManagementSystem.reader["MarkUpId"].ToString());
+                }
             }
-            StationaryManagementSystem.reader.Close();
-            StationaryManagementSystem.smsConn.Close();
+            finally
+            {
+                StationaryManagementSystem.reader.Close();
+                StationaryManagementSystem.smsConn.Close();
+            }
             return order;
         }
 

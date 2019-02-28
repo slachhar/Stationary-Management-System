@@ -12,17 +12,23 @@ namespace SMS_Api.Application.Orders
     {
         public static bool DeleteOrder(int orderId)
         {
-            StationaryManagementSystem.SetSQLCommand(DBConstants.DeleteOrder);
-
-            StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
-            StationaryManagementSystem.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
-            StationaryManagementSystem.smsConn.Open();
-            object o = StationaryManagementSystem.smsCmd.ExecuteScalar();
-            if (o != null)
+            try
             {
-                string id = o.ToString();
+                StationaryManagementSystem.SetSQLCommand(DBConstants.DeleteOrder);
+
+                StationaryManagementSystem.smsCmd.CommandType = CommandType.StoredProcedure;
+                StationaryManagementSystem.smsCmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = orderId;
+                StationaryManagementSystem.smsConn.Open();
+                object o = StationaryManagementSystem.smsCmd.ExecuteScalar();
+                if (o != null)
+                {
+                    string id = o.ToString();
+                }
             }
-            StationaryManagementSystem.smsConn.Close();
+            finally
+            {
+                StationaryManagementSystem.smsConn.Close();
+            }
             return true;
         }
     }

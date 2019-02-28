@@ -13,7 +13,8 @@ namespace SMS_Api.Common.Constants
 		public const string OrderCreate = "OrderCreate";
 		public const string UpdateOrder = "UpdateOrder";
 		public const string DeleteOrder = "DeleteOrder";
-		#endregion
+        public const string InventoryCreate = "InventoryCreate";
+        #endregion
 
-	}
+    }
 }

@@ -221,6 +221,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Inventory\InventoryServerCommands.Insert.cs" />
     <Compile Include="Application\Orders\OrderServerCommands.Insert.cs" />
     <Compile Include="Application\Orders\OrderServerCommands.Fetch.cs" />
     <Compile Include="Application\Orders\OrderServerCommands.Update.cs" />
@@ -315,7 +316,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Application\Inventory\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Institutions\" />
