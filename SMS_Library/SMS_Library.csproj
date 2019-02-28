@@ -85,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\Models\Institution.cs" />
-    <Compile Include="Business\Models\Inventary.cs" />
+    <Compile Include="Business\Models\Inventory.cs" />
     <Compile Include="Business\Models\MarkUp.cs" />
     <Compile Include="Business\Models\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
